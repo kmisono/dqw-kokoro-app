@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+    font-family: 'DotGothic16', sans-serif;
+    --bg-color: #000000;
+    --text-color: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    background-image:
+        linear-gradient(#111 1px, transparent 1px),
+        linear-gradient(90deg, #111 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* NES-style border utility */
+.rpg-window {
+    position: relative;
+    background: #000;
+    border-style: solid;
+    border-width: 4px;
+    border-image-slice: 2;
+    border-image-width: 2;
+    border-image-repeat: stretch;
+    border-image-source: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQYV2NkYGD4zwAFjFAeIsAI5YF4wICuAAZwkikwdBAAAApnAgIlclx7AAAAAElFTkSuQmCC');
+    box-shadow: 0 0 0 2px #fff inset;
+    /* Force a white inner border effect if image fails or for extra style */
+    /* Alternatively, simpler CSS border */
+    border: 4px solid #fff;
+    border-radius: 4px;
+    /* Slight rounded for modern ease, or 0 for pure retro */
+    border-radius: 0;
+}
+
+.rpg-btn {
+    background: #000;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: 'DotGothic16', sans-serif;
+    text-transform: uppercase;
+    transition: transform 0.1s;
+}
+
+.rpg-btn:active {
+    background: #fff;
+    color: #000;
+}
