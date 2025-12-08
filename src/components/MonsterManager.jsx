@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function MonsterManager({ monsters, onClose, onSave }) {
+    const { t } = useTranslation();
     // Local state for checkboxes
     const [localMonsters, setLocalMonsters] = useState(monsters);
 
@@ -34,9 +36,9 @@ export default function MonsterManager({ monsters, onClose, onSave }) {
             <div className="rpg-window w-full max-w-md flex flex-col max-h-[80vh] bg-black">
                 <div className="p-4 border-b-2 border-white flex justify-between items-center bg-black">
                     <div>
-                        <h2 className="text-lg text-white">MONSTER LIST</h2>
+                        <h2 className="text-lg text-white">{t('MANAGE_VISIBILITY')}</h2>
                         <p className="text-xs text-slate-400">
-                            Select up to {MAX_VISIBLE} ({visibleCount}/{MAX_VISIBLE})
+                            ({visibleCount}/{MAX_VISIBLE}) {t('VISIBLE_LIMIT')}
                         </p>
                     </div>
                     <button onClick={onClose} className="text-white hover:text-red-500 px-2 font-bold">X</button>
@@ -84,12 +86,12 @@ export default function MonsterManager({ monsters, onClose, onSave }) {
                 </div>
 
                 <div className="p-4 border-t-2 border-white flex justify-end gap-2">
-                    <button onClick={onClose} className="px-4 py-2 text-slate-400 hover:text-white">CANCEL</button>
+                    <button onClick={onClose} className="px-4 py-2 text-slate-400 hover:text-white">{t('CANCEL')}</button>
                     <button
                         onClick={handleSave}
                         className="px-6 py-2 border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white rpg-btn"
                     >
-                        APPLY
+                        {t('SAVE')}
                     </button>
                 </div>
             </div>

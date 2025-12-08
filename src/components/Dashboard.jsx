@@ -1,8 +1,11 @@
 import React from 'react';
 import { calculateStats, predictRemainingBattles, calculateDefaultExpectedValue, calculateOptimalInventory } from '../lib/calculator';
 import { RANK_COLORS } from '../lib/constants';
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function Dashboard({ logs, monster }) {
+    const { t } = useTranslation();
+
     if (!monster) return null;
 
     const { totalPoints, sProgress, rankPoints, counts, averagePoints, logs: monsterLogs } = calculateStats(logs, monster);
@@ -29,7 +32,7 @@ export default function Dashboard({ logs, monster }) {
         <div className="p-4 space-y-6">
             {/* Main Progress Card */}
             <div className="rpg-window p-6 text-center">
-                <p className="text-white text-sm mb-2">=== PROGRESS ===</p>
+                <p className="text-white text-sm mb-2">{t('PROGRESS')}</p>
 
                 <h2 className="text-4xl text-white mb-2 tracking-widest">
                     {sProgress.toFixed(1)} <span className="text-lg">/ {monster.sTarget} S</span>
@@ -56,20 +59,20 @@ export default function Dashboard({ logs, monster }) {
             <div className="grid grid-cols-1 gap-4">
                 {/* Prediction Card */}
                 <div className="rpg-window p-4 flex flex-col items-center">
-                    <p className="text-sm mb-2 uppercase">REMAINING BATTLES</p>
+                    <p className="text-sm mb-2 uppercase">{t('REMAINING_BATTLES')}</p>
                     <div className="text-3xl text-yellow-400 mb-1">
-                        {remainingBattles === 0 ? "COMPLETE!" : `~${remainingBattles}`}
+                        {remainingBattles === 0 ? t('COMPLETE') : `~${remainingBattles}`}
                     </div>
                     <p className="text-[10px] text-slate-500">
-                        {manualEV ? `MANUAL SETTING: ${manualEV}` :
-                            (monsterLogs.length > 0 ? `ACTUAL AVG: ${averagePoints.toFixed(1)}` : `THEORETICAL: ${theoreticalEV.toFixed(1)}`)
+                        {manualEV ? `${t('MANUAL_SETTING')}: ${manualEV}` :
+                            (monsterLogs.length > 0 ? `${t('ACTUAL_AVG')}: ${averagePoints.toFixed(1)}` : `${t('THEORETICAL')}: ${theoreticalEV.toFixed(1)}`)
                         }
                     </p>
                 </div>
 
                 {/* Effective Inventory Card */}
                 <div className="rpg-window p-4">
-                    <p className="text-sm mb-2 text-center uppercase border-b-2 border-slate-700 pb-2">Effective Inventory</p>
+                    <p className="text-sm mb-2 text-center uppercase border-b-2 border-slate-700 pb-2">{t('EFFECTIVE_INVENTORY')}</p>
                     <div className="flex flex-wrap justify-center gap-2 mt-2">
                         {['S', 'A', 'B', 'C', 'D'].map(rank => (
                             <RankCountBadge
@@ -83,7 +86,7 @@ export default function Dashboard({ logs, monster }) {
 
                 {/* Drop History (Raw) */}
                 <div className="rpg-window p-4">
-                    <p className="text-sm mb-2 text-center uppercase border-b-2 border-slate-700 pb-2">Raw Drops</p>
+                    <p className="text-sm mb-2 text-center uppercase border-b-2 border-slate-700 pb-2">{t('RAW_DROPS')}</p>
                     <div className="flex flex-wrap justify-center gap-2 mt-2 opacity-70">
                         {['S', 'A', 'B', 'C', 'D'].map(rank => {
                             const count = counts[rank];

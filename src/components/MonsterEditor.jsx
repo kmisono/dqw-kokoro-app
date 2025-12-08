@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { DEFAULT_MONSTER_TEMPLATE } from '../lib/constants';
 import { getRankPoints } from '../lib/calculator';
+import { useTranslation } from '../hooks/useTranslation';
 
 // Simple modal or form for editing a monster
 export default function MonsterEditor({ monster, onSave, onCancel, onDelete }) {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState(DEFAULT_MONSTER_TEMPLATE);
 
     // Load initial data
@@ -45,24 +47,24 @@ export default function MonsterEditor({ monster, onSave, onCancel, onDelete }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80">
             <div className="rpg-window w-full max-w-md p-6 max-h-[90vh] overflow-y-auto bg-black">
                 <h2 className="text-xl text-white mb-4 tracking-widest text-center border-b-2 border-white pb-2">
-                    {monster ? 'EDIT MONSTER' : 'NEW MONSTER'}
+                    {monster ? t('EDIT_MONSTER') : t('NEW_MONSTER')}
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-xs uppercase text-slate-400 mb-1">Monster Name</label>
+                        <label className="block text-xs uppercase text-slate-400 mb-1">{t('MONSTER_NAME')}</label>
                         <input
                             type="text"
                             required
                             className="w-full bg-black border-2 border-white p-3 text-white focus:outline-none font-dotgothic"
                             value={formData.name}
                             onChange={(e) => handleChange('name', e.target.value)}
-                            placeholder="NAME"
+                            placeholder={t('MONSTER_NAME')}
                         />
                     </div>
 
                     <div>
-                        <label className="block text-xs uppercase text-slate-400 mb-1">Target S Count</label>
+                        <label className="block text-xs uppercase text-slate-400 mb-1">{t('TARGET_S_COUNT')}</label>
                         <input
                             type="number"
                             min="1"
@@ -75,7 +77,7 @@ export default function MonsterEditor({ monster, onSave, onCancel, onDelete }) {
 
                     {/* Synthesis Rules */}
                     <div className="border-2 border-slate-600 p-4 relative mt-6">
-                        <h3 className="text-xs text-white absolute -top-3 left-2 bg-black px-2">SYNTHESIS RULES</h3>
+                        <h3 className="text-xs text-white absolute -top-3 left-2 bg-black px-2">{t('SYNTHESIS_RULES')}</h3>
                         <div className="grid grid-cols-2 gap-4">
                             <SynthesisInput label="D → C" value={formData.synthesis?.D_to_C} onChange={(v) => handleSynthesisChange('D_to_C', v)} />
                             <SynthesisInput label="C → B" value={formData.synthesis?.C_to_B} onChange={(v) => handleSynthesisChange('C_to_B', v)} />
@@ -85,7 +87,7 @@ export default function MonsterEditor({ monster, onSave, onCancel, onDelete }) {
 
                         {/* Calculated Point Values Display */}
                         <div className="mt-4 pt-4 border-t border-slate-800">
-                            <h4 className="text-[10px] text-slate-500 uppercase mb-2">Calculated Point Values</h4>
+                            <h4 className="text-[10px] text-slate-500 uppercase mb-2">{t('CALCULATED_POINTS')}</h4>
                             <div className="flex justify-between text-xs text-slate-300 font-mono">
                                 <span>S:{currentPoints.S}</span>
                                 <span>A:{currentPoints.A}</span>
@@ -98,11 +100,11 @@ export default function MonsterEditor({ monster, onSave, onCancel, onDelete }) {
 
                     {/* Manual EV Override */}
                     <div className="border-2 border-slate-600 p-4 relative mt-4">
-                        <h3 className="text-xs text-white absolute -top-3 left-2 bg-black px-2">PREDICTION CONFIG</h3>
+                        <h3 className="text-xs text-white absolute -top-3 left-2 bg-black px-2">{t('PREDICTION_CONFIG')}</h3>
                         <div>
                             <label className="block text-[10px] text-slate-500 mb-1">
-                                EV Override (Points Per Battle)
-                                <span className="block text-[9px] opacity-70">Set to 0 to use Actual Average</span>
+                                {t('EV_OVERRIDE')}
+                                <span className="block text-[9px] opacity-70">{t('EV_OVERRIDE_DESC')}</span>
                             </label>
                             <input
                                 type="number"
@@ -122,7 +124,7 @@ export default function MonsterEditor({ monster, onSave, onCancel, onDelete }) {
                                 onClick={() => onDelete(monster.id)}
                                 className="px-4 py-2 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white rpg-btn"
                             >
-                                DELETE
+                                {t('DELETE')}
                             </button>
                         )}
                         <div className="flex-1"></div>
@@ -131,13 +133,13 @@ export default function MonsterEditor({ monster, onSave, onCancel, onDelete }) {
                             onClick={onCancel}
                             className="px-4 py-2 text-slate-400 hover:text-white"
                         >
-                            CANCEL
+                            {t('CANCEL')}
                         </button>
                         <button
                             type="submit"
                             className="px-6 py-2 border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-black rpg-btn"
                         >
-                            SAVE
+                            {t('SAVE')}
                         </button>
                     </div>
                 </form>

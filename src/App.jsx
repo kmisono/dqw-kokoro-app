@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getLogs, saveLog, getMonsters, saveMonster, deleteMonster } from './lib/storage';
 import { RANK_COLORS } from './lib/constants';
+import { useTranslation } from './hooks/useTranslation';
 import MonsterSelect from './components/MonsterSelect';
 // ... (imports)
 
@@ -14,6 +15,7 @@ import HistoryModal from './components/HistoryModal';
 import MonsterManager from './components/MonsterManager';
 
 function App() {
+  const { t } = useTranslation();
   const [monsters, setMonsters] = useState([]);
   const [activeMonsterId, setActiveMonsterId] = useState(null);
   const [logs, setLogs] = useState([]);
@@ -140,7 +142,7 @@ function App() {
       <header className="px-4 py-6 sticky top-0 z-10 flex justify-between items-center bg-black border-b-2 border-white gap-2">
         <div className="flex-1">
           <h1 className="text-xl text-white tracking-widest hidden sm:block">
-            DQW MANAGER
+            {t('APP_TITLE')}
           </h1>
           <h1 className="text-xl text-white tracking-widest sm:hidden">
             DQW
@@ -151,14 +153,14 @@ function App() {
           onClick={() => setShowManager(true)}
           className="text-xs rpg-btn px-3 py-1.5 border-slate-500 text-slate-400 hover:text-white"
         >
-          LIST
+          {t('MANAGE_VISIBILITY')}
         </button>
 
         <button
           onClick={() => { setEditingMonster(null); setShowEditor(true); }}
           className="text-xs rpg-btn px-3 py-1.5"
         >
-          + NEW
+          {t('ADD_NEW')}
         </button>
       </header>
 
@@ -185,7 +187,7 @@ function App() {
                 <MonsterSelect
                   monsters={visibleMonsters}
                   activeMonsterId={activeMonsterId}
-                  onChange={setActiveMonsterId}
+                  onSelect={setActiveMonsterId}
                 />
               </div>
               {/* Edit Current Monster Button */}
@@ -210,12 +212,12 @@ function App() {
             {/* Recent Drops List */}
             <div className="px-6 py-4 mt-6">
               <div className="flex justify-between items-center mb-2">
-                <div className="text-slate-600 text-xs uppercase">Recent Drops ({activeMonster?.name})</div>
+                <div className="text-slate-600 text-xs uppercase">{t('RECENT_DROPS')} ({activeMonster?.name})</div>
                 <button
                   onClick={() => setShowHistory(true)}
                   className="text-blue-400 text-xs font-bold hover:underline"
                 >
-                  VIEW ALL ({logs.filter(l => l.monsterId === activeMonsterId).length})
+                  {t('VIEW_ALL')} ({logs.filter(l => l.monsterId === activeMonsterId).length})
                 </button>
               </div>
 
