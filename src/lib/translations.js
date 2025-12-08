@@ -39,7 +39,12 @@ export const TRANSLATIONS = {
         VISIBLE_LIMIT: "ひょうじ じょうげん: 8たい",
         // MonsterSelect
         SELECT_MONSTER: "モンスター せんたく",
-        ADD_NEW: "+ しんき ついか"
+        ADD_NEW: "+ しんき ついか",
+        // AboutModal
+        ABOUT_TITLE: "インフォメーション",
+        APP_DESCRIPTION: "ドラクエウォークのこころしんちょくを かんりする ひこうしきツールです。",
+        GITHUB_REPOSITORY: "GitHub リポジトリ",
+        DISCLAIMER: "このアプリは ひこうしきの ファンアプリです。\nスクウェア・エニックスとは かんけいありません。",
     },
     en: {
         REQ_LOG_TITLE: "Request Log",
@@ -81,6 +86,11 @@ export const TRANSLATIONS = {
         VISIBLE_LIMIT: "MAX VISIBLE: 8",
         // MonsterSelect
         SELECT_MONSTER: "SELECT MONSTER",
-        ADD_NEW: "+ ADD NEW"
+        ADD_NEW: "+ ADD NEW",
+        // AboutModal
+        ABOUT_TITLE: "INFO",
+        APP_DESCRIPTION: "A fan-made tool to track progress and optimize synthesis for Dragon Quest Walk hearts.",
+        GITHUB_REPOSITORY: "GitHub Repository",
+        DISCLAIMER: "Unofficial fan application.\nNot affiliated with Square Enix."
     }
 };

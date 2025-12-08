@@ -13,6 +13,7 @@ import Dashboard from './components/Dashboard';
 import MonsterEditor from './components/MonsterEditor';
 import HistoryModal from './components/HistoryModal';
 import MonsterManager from './components/MonsterManager';
+import AboutModal from './components/AboutModal';
 
 function App() {
   const { t } = useTranslation();
@@ -30,6 +31,9 @@ function App() {
 
   // History State
   const [showHistory, setShowHistory] = useState(false);
+
+  // About Modal State
+  const [showAbout, setShowAbout] = useState(false);
 
   const [initError, setInitError] = useState(null);
 
@@ -140,13 +144,21 @@ function App() {
   return (
     <div className="min-h-screen pb-safe relative font-dotgothic">
       <header className="px-4 py-4 sm:py-6 sticky top-0 z-10 flex flex-col sm:flex-row sm:justify-between sm:items-center bg-black border-b-2 border-white gap-2 sm:gap-4">
-        <div className="w-full sm:w-auto">
-          <h1 className="text-xl text-white tracking-widest text-center sm:text-left">
+        <div className="w-full sm:w-auto flex justify-between sm:justify-start items-center">
+          <h1 className="text-xl text-white tracking-widest text-left">
             {t('APP_TITLE')}
           </h1>
+          {/* Mobile Info Button (visible only on mobile if space is tight, or just same layout) */}
         </div>
 
         <div className="flex gap-2 w-full sm:w-auto justify-end sm:justify-start">
+          <button
+            onClick={() => setShowAbout(true)}
+            className="text-xs rpg-btn px-2 py-1.5 border-slate-500 text-slate-400 hover:text-white"
+            title="About"
+          >
+            ?
+          </button>
           <button
             onClick={() => setShowManager(true)}
             className="text-xs rpg-btn px-3 py-1.5 border-slate-500 text-slate-400 hover:text-white flex-1 sm:flex-none justify-center"
@@ -277,6 +289,13 @@ function App() {
           monster={activeMonster}
           onClose={() => setShowHistory(false)}
           onUpdate={(newLogs) => setLogs(newLogs)}
+        />
+      )}
+
+      {/* About Modal */}
+      {showAbout && (
+        <AboutModal
+          onClose={() => setShowAbout(false)}
         />
       )}
     </div>
