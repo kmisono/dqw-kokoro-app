@@ -139,29 +139,28 @@ function App() {
 
   return (
     <div className="min-h-screen pb-safe relative font-dotgothic">
-      <header className="px-4 py-6 sticky top-0 z-10 flex justify-between items-center bg-black border-b-2 border-white gap-2">
-        <div className="flex-1">
-          <h1 className="text-xl text-white tracking-widest hidden sm:block">
+      <header className="px-4 py-4 sm:py-6 sticky top-0 z-10 flex flex-col sm:flex-row sm:justify-between sm:items-center bg-black border-b-2 border-white gap-2 sm:gap-4">
+        <div className="w-full sm:w-auto">
+          <h1 className="text-xl text-white tracking-widest text-center sm:text-left">
             {t('APP_TITLE')}
-          </h1>
-          <h1 className="text-xl text-white tracking-widest sm:hidden">
-            DQW
           </h1>
         </div>
 
-        <button
-          onClick={() => setShowManager(true)}
-          className="text-xs rpg-btn px-3 py-1.5 border-slate-500 text-slate-400 hover:text-white"
-        >
-          {t('MANAGE_VISIBILITY')}
-        </button>
+        <div className="flex gap-2 w-full sm:w-auto justify-end sm:justify-start">
+          <button
+            onClick={() => setShowManager(true)}
+            className="text-xs rpg-btn px-3 py-1.5 border-slate-500 text-slate-400 hover:text-white flex-1 sm:flex-none justify-center"
+          >
+            {t('MANAGE_VISIBILITY')}
+          </button>
 
-        <button
-          onClick={() => { setEditingMonster(null); setShowEditor(true); }}
-          className="text-xs rpg-btn px-3 py-1.5"
-        >
-          {t('ADD_NEW')}
-        </button>
+          <button
+            onClick={() => { setEditingMonster(null); setShowEditor(true); }}
+            className="text-xs rpg-btn px-3 py-1.5 flex-1 sm:flex-none justify-center"
+          >
+            {t('ADD_NEW')}
+          </button>
+        </div>
       </header>
 
       <main className="max-w-md mx-auto pb-20">
@@ -202,12 +201,11 @@ function App() {
               )}
             </div>
 
-            <Dashboard logs={logs} monster={activeMonster} />
-
-            <div className="mt-4">
-              <p className="text-center text-slate-500 text-xs mb-2">RECORD DROP</p>
+            <div className="mt-4 mb-6">
               <DropInput onDrop={handleDrop} />
             </div>
+
+            <Dashboard logs={logs} monster={activeMonster} />
 
             {/* Recent Drops List */}
             <div className="px-6 py-4 mt-6">

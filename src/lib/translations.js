@@ -2,7 +2,7 @@ export const TRANSLATIONS = {
     ja: {
         REQ_LOG_TITLE: "かいはつ いらい ログ",
         // App
-        APP_TITLE: "DQW こころ かんり",
+        APP_TITLE: "DQWこころかんり",
         RECENT_DROPS: "さいきんの ドロップ",
         VIEW_ALL: "すべて みる",
         // Dashboard
