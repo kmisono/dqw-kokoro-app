@@ -4,6 +4,8 @@ A fan-made companion app for **Dragon Quest Walk** designed to track and optimiz
 
 This application helps players calculate exactly how close they are to obtaining an **S Rank** heart by tracking drops and applying the game's synthesis rules.
 
+<img src="./Screenshot_1_dqw-kokoro-app.web.app.jpeg" width=512>
+
 ## 🐉 Features
 
 *   **Progress Tracking**: Visualize your progress towards an S Rank heart in real-time.
